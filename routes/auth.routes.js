@@ -23,7 +23,7 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 });
 
 router.post("/signup", (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
 
   if (!username) {
     return res
@@ -35,6 +35,13 @@ router.post("/signup", (req, res) => {
     return res.status(400).json({
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
+  }
+
+  if(!email) {
+    return res
+      .status(400)
+      .json({ errorMessage: "Please provide your email." });
+
   }
  
 
@@ -54,6 +61,7 @@ router.post("/signup", (req, res) => {
         return User.create({
           username,
           password: hashedPassword,
+          email
         });
       })
       .then((user) => {
