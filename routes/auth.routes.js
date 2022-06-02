@@ -22,7 +22,7 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
   res.status(200).json(req.payload);
 });
 
-router.post("/signup", (req, res) => {
+router.post("/signup", (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username) {
@@ -60,8 +60,8 @@ router.post("/signup", (req, res) => {
         // Create a user and save it in the database
         return User.create({
           username,
+          email,
           password: hashedPassword,
-          email
         });
       })
       .then((user) => {
