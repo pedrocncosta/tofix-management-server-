@@ -4,24 +4,10 @@ const mongoose = require("mongoose");
 
 const Establishment = require("../models/Establishment.model");
 
-router.get("/api/categories/home", (req, res, next) => {
+router.get("/api/categories/type", (req, res, next) => {
   Establishment.find({})
     .populate("comments")
-    .then((homeCategories) => res.status(200).json(homeCategories))
-    .catch((err) => res.status(400).json({ message: "No posts were found" }));
-});
-
-router.get("/api/categories/auto", (req, res, next) => {
-  Establishment.find({})
-    .populate("comments")
-    .then((autoCategories) => res.status(200).json(autoCategories))
-    .catch((err) => res.status(400).json({ message: "No posts were found" }));
-});
-
-router.get("/api/categories/devices", (req, res, next) => {
-  Establishment.find({})
-    .populate("comments")
-    .then((devicesCategories) => res.status(200).json(devicesCategories))
+    .then((typeCategories) => res.status(200).json(typeCategories))
     .catch((err) => res.status(400).json({ message: "No posts were found" }));
 });
 
@@ -57,3 +43,10 @@ router.delete("/api/categories/:postId", (req, res, next) => {
 });
 
 module.exports = router;
+
+router.get("/api/categories/type/:id", (req, res, next) => {
+  Establishment.findById({id})
+    .populate("comments")
+    .then((uniquePost) => res.status(200).json(uniquePost))
+    .catch((err) => res.status(400).json({ message: "No posts were found" }));
+});
