@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Establishment = require("../models/Establishment.model");
-const Comment = require("../models/Comment.model");
+const User = require("../models/User.model");
 
 router.get("/categories/type", (req, res, next) => {
   Establishment.find({})
@@ -11,7 +11,17 @@ router.get("/categories/type", (req, res, next) => {
 });
 
 router.post("/categories/establishment", (req, res, next) => {
-  const { companyName, location, profileImage, phoneNumber, email } = req.body;
+  const {
+    companyName,
+    location,
+    profileImage,
+    phoneNumber,
+    email,
+    userId,
+    profileType,
+  } = req.body;
+
+  if (profileType !== "admin") return;
 
   Establishment.create({
     companyName,
@@ -19,8 +29,15 @@ router.post("/categories/establishment", (req, res, next) => {
     profileImage,
     phoneNumber,
     email,
-    comments: [],
   })
+    .then((newEstablishment) => {
+      console.log(newEstablishment);
+      return User.findByIdAndUpdate(
+        userId,
+        { $push: { establishments: newEstablishment._id } },
+        { new: true }
+      );
+    })
     .then((response) => res.status(200).json(response))
     .catch((err) =>
       res.status(400).json({
