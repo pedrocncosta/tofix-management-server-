@@ -4,9 +4,20 @@ const User = require("../models/User.model");
 
 router.get("/users", (req, res, next) => {
   User.find({})
-  .populate("comments establishments")
+    .populate("comments establishments")
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
+});
+
+router.get("/user/:userId", (req, res, next) => {
+  const { _id } = req.payload;
+
+  User.findById(_id)
+    .populate("establishments")
+    .then((user) => {
+      res.json(user);
+    })
+    .catch(() => console.log("oi"));
 });
 
 router.put("/profile/:userId", (req, res, next) => {

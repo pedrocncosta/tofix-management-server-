@@ -53,16 +53,6 @@ router.post("/categories/establishment", (req, res, next) => {
     );
 });
 
-router.get("/user/:id", (req, res, next) => {
-  const { _id } = req.payload;
-
-  User.findById(_id)
-    .then((user) => {
-      res.json(user);
-    })
-    .catch(() => console.log("oi"));
-});
-
 router.get("/categories/type/:id", (req, res, next) => {
   const { id } = req.params;
   Establishment.findById(id)
