@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 
 router.get("/users", (req, res, next) => {
   User.find({})
+  .populate("comments establishments")
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
 });

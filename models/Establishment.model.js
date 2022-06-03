@@ -14,6 +14,7 @@ const establishmentSchema = new Schema({
   phoneNumber: Number,
   email: { type: String, required: true, unique: true },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+  establishmentOwner: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 const Establishment = model("Establishment", establishmentSchema);
