@@ -13,10 +13,10 @@ router.get("/user/:userId", (req, res, next) => {
   const { _id } = req.payload;
 
   User.findById(_id)
-  .populate({
-    path: "comments",
-    populate: { path: "author" },
-  })
+    .populate({
+      path: "establishments",
+      populate: { path: "comments" },
+    })
     .then((user) => {
       res.json(user);
     })
