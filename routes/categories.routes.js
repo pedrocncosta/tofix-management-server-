@@ -73,6 +73,7 @@ router.delete("/categories/:id", isAuthenticated, async (req, res, next) => {
       res.status(400).json({ errorMessage: "You are not the owner" });
       return;
     }
+    
     let deletedEstablishment = await Establishment.findByIdAndRemove(id);
 
     await User.findByIdAndUpdate(_id, {
