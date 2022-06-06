@@ -32,4 +32,12 @@ router.put("/profile/:userId", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
+router.delete("/user/:userId", (req, res, next) => {
+  const { userId } = req.params;
+
+  User.findByIdAndRemove(userId)
+    .then((response) => res.json(response))
+    .catch((err) => res.json(err));
+});
+
 module.exports = router;
