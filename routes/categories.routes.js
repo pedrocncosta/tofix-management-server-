@@ -10,6 +10,7 @@ router.get("/categories/type", (req, res, next) => {
       path: "comments",
       populate: { path: "author" },
     })
+    
     .then((typeCategories) => res.status(200).json(typeCategories))
     .catch((err) => res.status(400).json({ message: "No posts were found" }));
 });
@@ -56,7 +57,7 @@ router.post("/categories/establishment", (req, res, next) => {
 router.get("/categories/type/:id", (req, res, next) => {
   const { id } = req.params;
   Establishment.findById(id)
-    .populate("comments")
+    .populate("comments establishmentOwner")
     .then((uniquePost) => res.status(200).json(uniquePost))
     .catch((err) => res.status(400).json({ message: "No posts were found" }));
 });
