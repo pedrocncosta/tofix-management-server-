@@ -10,7 +10,11 @@ const establishmentSchema = new Schema({
     type: String,
     required: true,
   },
-  profileImage: String,
+  imageUrl: {
+    type: String,
+    default:
+      "https://mpng.subpng.com/20190226/gje/kisspng-clip-art-restaurant-vector-graphics-illustration-b-5c75868baec140.2635704815512060277158.jpg",
+  },
   phoneNumber: Number,
   email: { type: String, required: true, unique: true },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
