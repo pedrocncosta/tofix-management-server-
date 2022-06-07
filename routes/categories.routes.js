@@ -21,7 +21,7 @@ router.post("/categories/establishment", (req, res, next) => {
   const {
     companyName,
     location,
-    profileImage,
+    imageUrl,
     phoneNumber,
     email,
     profileType,
@@ -33,7 +33,7 @@ router.post("/categories/establishment", (req, res, next) => {
   Establishment.create({
     companyName,
     location,
-    profileImage,
+    imageUrl,
     phoneNumber,
     email,
     establishmentOwner: _id,
