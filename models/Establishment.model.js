@@ -12,7 +12,7 @@ const establishmentSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    default: "https://cdn-icons-png.flaticon.com/512/2825/2825777.png",
+    default: "https://cdn-icons-png.flaticon.com/512/610/610365.png",
   },
   phoneNumber: Number,
   email: { type: String, required: true, unique: true },
