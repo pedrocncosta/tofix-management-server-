@@ -12,8 +12,7 @@ const establishmentSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    default:
-      "https://mpng.subpng.com/20190226/gje/kisspng-clip-art-restaurant-vector-graphics-illustration-b-5c75868baec140.2635704815512060277158.jpg",
+    default: "https://cdn-icons-png.flaticon.com/512/2825/2825777.png",
   },
   phoneNumber: Number,
   email: { type: String, required: true, unique: true },
