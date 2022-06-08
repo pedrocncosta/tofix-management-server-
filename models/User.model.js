@@ -12,6 +12,7 @@ const userSchema = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    aboutMe: { type: String },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
     establishments: [{ type: Schema.Types.ObjectId, ref: "Establishment" }],
   },

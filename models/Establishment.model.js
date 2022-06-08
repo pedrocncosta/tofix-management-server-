@@ -17,8 +17,10 @@ const establishmentSchema = new Schema({
   },
   phoneNumber: Number,
   email: { type: String, required: true, unique: true },
+  aboutUs: { type: String },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   establishmentOwner: { type: Schema.Types.ObjectId, ref: "User" },
+  role: { type: String, enum: ["home", "auto", "devices"] },
 });
 
 const Establishment = model("Establishment", establishmentSchema);

@@ -26,6 +26,7 @@ router.post("/categories/establishment", (req, res, next) => {
     email,
     profileType,
     establishmentOwner,
+    role
   } = req.body;
 
   /* if (profileType !== "admin") return;
@@ -37,6 +38,7 @@ router.post("/categories/establishment", (req, res, next) => {
     phoneNumber,
     email,
     establishmentOwner: _id,
+    role
   })
     .then((newEstablishment) => {
       console.log(newEstablishment);
