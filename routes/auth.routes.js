@@ -23,7 +23,7 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, profileType } = req.body;
 
   if (!username) {
     return res
@@ -37,13 +37,9 @@ router.post("/signup", (req, res, next) => {
     });
   }
 
-  if(!email) {
-    return res
-      .status(400)
-      .json({ errorMessage: "Please provide your email." });
-
+  if (!email) {
+    return res.status(400).json({ errorMessage: "Please provide your email." });
   }
- 
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
@@ -61,6 +57,7 @@ router.post("/signup", (req, res, next) => {
         return User.create({
           username,
           email,
+          profileType,
           password: hashedPassword,
         });
       })
